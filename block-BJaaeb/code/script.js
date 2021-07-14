@@ -6,12 +6,13 @@ default value to be "text" and return the input element inside label. (create it
 */
 
 // Your code goes here
-function createInputElm(label, input)
+function createInputElm(labelMessage, type = `text`)
 {
   let label = document.createElement(`label`)  ;
-  let input = document.createElement(`input`, `type = 'text'`);
-  let result = label.append(input);
-  return result;
+  let input = document.createElement(`input`);
+  input.type = type;
+  label.innerText = labelMessage;
+  return label;
 }
 // TEST
 createInputElm('Your name'); //<label>Your name: <input type="text"></label>
@@ -21,14 +22,11 @@ createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></
 
 // Your code goes here
 
-function createInputElm(label, input)
+function createInputElm(labelMessage, type = `text`)
 {
-  let label = document.createElement(`label`)  ;
-  let input = document.createElement(`input`, `type = 'text'`);
-  let result = label.append(input);
-  return result;
+  let html = <label>${labelMessage} <input type = "${text}"></input></label>;
+  return html;
 }
-
 // TEST
 createInputElm('Your name'); //<label>Your name: <input type="text"></label>
 createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></label>
@@ -37,6 +35,22 @@ createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></
 // the html for the link like <ul> <li>Mango</li>  <li>Apple</li>  <li>Banana</li> </ul>
 // Your code goes here
 
+function createList(data = [])
+{
+  let html = `<ul>
+  ${data.map(elm => `<li>${elm}</li>`).join(``)}
+  </ul>`;
+  return html;
+}
+
+function createList(data = [])
+{
+  let ul = document.createElement(`ul`);
+  let li = document.createElement(`li`);
+  li.append(data);
+  ul.append(li);
+  return ul;
+}
 // TEST
 createList(['ALABAMA', 'ALASKA', 'HAWAII', 'KENTUCKY']);
 createList(['Afghanistan', 'Antarctica', 'Congo', 'Estonia']);
@@ -54,6 +68,35 @@ createList(['Afghanistan', 'Antarctica', 'Congo', 'Estonia']);
 */
 
 // Your code goes here
+
+function createTodoList(data = [])
+{
+  let ul = document.createElement(`ul`);
+  let p = document.createElement(`p`);
+  let input = document.createElement(`input`);
+  input.value = `TRUE`;
+  input.type = `checkbox`;
+  input.name = `name = ```;
+  input.id = `id = ```;
+  let span = document.createElement(`span`);
+  span.innerText = `X`;
+  let li = document.createElement(`li`);
+  li.append(p,input,span);
+  ul.append(li);
+}
+
+
+function createTodoList(data = [])
+{
+  let html = `<ul>
+  ${data.map(todo => `<li>
+  <p> ${todo.name}</p>
+  <input type="checkbox" ${todo.isDone ? "checked" : ""} name="" id="">
+  <span>X</span>
+</li>`).join(``)}
+  </ul>`;
+  return html;
+}
 
 // TEST
 createTodoList([
