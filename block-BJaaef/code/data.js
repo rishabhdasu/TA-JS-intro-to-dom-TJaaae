@@ -1,3 +1,4 @@
+
 let got = {
   houses: [
     {
@@ -326,3 +327,26 @@ let got = {
     },
   ],
 };
+
+let ul = document.querySelector(`.flex`, `.wrap`);
+got.houses.forEach(house => {
+  house.people.forEach(elm => {
+  let li = document.createElement(`li`);
+  li.classList.add(`box`, `flex-28`);
+  let div = document.createElement(`div`);
+  div.classList.add(`flex`, `flex-48`, `flex-start`);
+  let img = document.createElement(`img`);
+  img.src = elm.image;
+  let h2 = document.createElement(`h2`);
+  h2.innerText = elm.name;
+  div.append(img, h2);
+  let p = document.createElement(`p`);
+  p.innerText = elm.description;
+  let btn = document.createElement(`button`);
+  btn.classList.add(`btn`);
+  btn.innerText = `Learn More!`;
+  li.append(div,p, btn);
+  ul.append(li);
+  })
+});
+  
